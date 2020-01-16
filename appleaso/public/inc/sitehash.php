@@ -1,0 +1,1 @@
+<?php define('SiteHash','E3IR6ABHT1VD');define('DBHash','MKILJROZY1GN');

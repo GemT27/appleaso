@@ -1,0 +1,185 @@
+<?php
+!defined('QAPP') AND exit('Forbidden');
+?>
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <?php @include('C:\Users\Administrator\Desktop\Project\PHP\appleaso\public\cache\template\11c5\c662\f6c980ea5a9a3bf2857b.html'); ?>
+    <title><?php echo(z('网站标题')); ?></title>
+</head>
+<body class="signup">
+
+<div id="header">
+    <div class="container">
+        <div class="sixteen columns">
+            <div id="usernav">
+            </div>
+
+        </div>
+    </div>
+</div>
+
+<!--菜单栏-->
+<div id="nav-wrap">
+    <div class="container">
+        <div id="nav">
+            <div class="sixteen columns">
+                <ul style="text-align: center">
+                    <li><img  src="<?php echo(z('logo图片')); ?>"  style="width:135px;height: 35px" alt=""></li>
+                    <li class="selected"><a href="/">Home</a></li>
+
+                    <li class=""><a href="/news">News</a></li>
+                    <li class=""><a href="/search">SEARCH</a></li>
+                    <li class="last"><a href="/contact">Contact</a></li>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+    </div>
+</div>
+<div class="container" id="content">
+    <div class="sixteen columns">
+        <div class="aligncenter" id="intro">
+            <h1 class="remove-bottom animated fadeIn move1" style="text-align: center"><?php echo(s('主页头部标题','19')); ?></h1>
+            <h2 class="remove-top animated fadeIn move1" style="text-align: center"><?php echo(s('主页头部副标题','19')); ?></h2>
+        </div>
+        <!-- 套餐-->
+        <div id="signup">
+            <?php
+            $tb = listFindAnd(22, array("isshow" => 1, "order" => "aorder"));
+            ?>
+            <?php foreach($tb as $k=>$v){ ?>
+            <?php if($k==count($tb)-1){ ?>
+            <div class="one_third starter last" style="background-color: <?php echo($v['box']); ?>">
+                <?php }else{ ?>
+                <div class="one_third starter" style="background-color: <?php echo($v['box']); ?>">
+                    <?php } ?>
+                    <h3 style="color: <?php echo($v['headcolor']); ?>"><?php echo($v['title']); ?><br/><span><?php echo($v['title2']); ?></span></h3>
+                    <p class="desc" style="color: <?php echo($v['headcolor']); ?>"><strong><?php echo($v['tips']); ?>:</strong> <br/><?php echo($v['tips2']); ?></p>
+
+                    <ul class="none spaced">
+                        <?php $exp = explode("\n", $v['func']);
+                        for ($a = 0; $a < count($exp); $a++) {
+                            echo "<li style='color: {$v['fontcolo']}'><i class='fa fa-check green-text' style='padding-right: 5px;' ></i>" . $exp[$a] . "</li>";
+                        }
+                        ?>
+                    </ul>
+                    <br />
+                    <div class="price" style="color: <?php echo($v['headcolor']); ?>"><span>$</span><?php echo($v['price']); ?></div>
+                    <div class="clear"></div>
+                    <div class="aligncenter btnholder">
+                        <a href="/shop/<?php echo($v['id']); ?>" class="button"
+                           style="background-color: <?php echo($v['btn']); ?>"><span style="color:<?php echo($v['btnfontcolor']); ?> ">Choose Plan</span></a>
+                    </div>
+                </div>
+                <?php } ?>
+
+
+            </div><!--/dev-->
+            <div class="clear"></div>
+            <p class="aligncenter">
+                <?php echo(s('主页中间内容','19')); ?>
+            </p>
+            <div>
+                <blockquote>
+                    <em><?php echo(s('主页中间副内容','19')); ?></em>
+                </blockquote>
+
+
+                <h3 class="lighten brand remove-bottom">Frequently Asked Questions</h3>
+
+                <?php $problem = listFindAnd(20, array("isshow" => 1));
+
+
+                ?>
+
+                <div class="one_half">
+                    <?php
+                    for ($i = 0; $i < count($problem); $i++) {
+                        if ($problem[$i]['weizhi'] == 'left') {
+                            echo "<h4 class=\"equal\">" . $problem[$i]['problem'] . "</h4>" . "<p>" . $problem[$i]['answer'] . "</p>";
+                        }
+                    }
+                    ?>
+                </div>
+                <div class="one_half last">
+                    <?php
+                    for ($i = 0; $i < count($problem); $i++) {
+                        if ($problem[$i]['weizhi'] == 'right') {
+                            echo "<h4 class=\"equal\">" . $problem[$i]['problem'] . "</h4>" . "<p>" . $problem[$i]['answer'] . "</p>";
+                        }
+                    }
+                    ?>
+                </div>
+
+            <div class="clear"></div>
+            <div class="aligncenter" style="text-align: center">
+                <h5>Any Other Questions? <a href="/contact/">Please Ask!</a></h5>
+            </div>
+            <hr/>
+
+            <div class="subheading">
+                <h4><?php echo(s('主页底部标题','19')); ?></h4>
+                <h5><?php echo(s('主页底部副标题','19')); ?></h5>
+            </div>
+
+            <div class="one_half">
+                <p><?php echo(s('主页底部内容','19')); ?>
+                </p>
+
+            </div>
+
+            <div class="one_half last">
+                <ul class="none">
+                    <?php $arr=s('主页底部能实现的功能','19'); ?>
+                    <?php
+                    $arr = explode("\r\n", $arr);
+                    ?>
+                    <?php if($arr[0]!=''){ ?>
+                    <?php foreach($arr as $i){ ?>
+                    <li><i class="fa fa-check green-text" style="padding-right: 5px"></i><?php echo($i); ?></li>
+                    <?php } ?>
+                    <?php } ?>
+                </ul>
+            </div>
+            <div class="clear"></div>
+        </div>
+
+
+    </div>
+
+    <div class="clear"></div>
+</div>
+</div>
+
+<!--页脚-->
+<div id="footer">
+    <div class="container">
+        <div class="sixteen columns" id="legal">
+
+            <p class="legal"><?php echo(z('页脚信息')); ?></p>
+            <p class="legal">&copy;
+                <?php echo(z('版权')); ?><br/>
+            </p>
+            <div class="resources">
+
+            </div>
+        </div>
+    </div>
+</div>
+
+  <!-- Global site tag (gtag.js) - Google Analytics -->
+<script async src="https://www.googletagmanager.com/gtag/js?id=UA-21220102-29"></script>
+<script>
+  window.dataLayer = window.dataLayer || [];
+  function gtag(){dataLayer.push(arguments);}
+  gtag('js', new Date());
+
+  gtag('config', 'UA-21220102-29');
+</script>
+
+
+  
+  
+</body>
+</html>
